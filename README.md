@@ -62,7 +62,12 @@ IAMCheck is a stack project and once [stack](https://docs.haskellstack.org/en/st
 stack build
 ```
 
-IAMCheck also needs [Z3](https://github.com/Z3Prover/z3) 4.8.12 or later installed.
+Binaries are created under the stack dist dir:
+```
+$(stack path --dist-dir)/build/iamcheck-exe/iamcheck-exe
+```
+
+IAMCheck also needs [Z3](https://github.com/Z3Prover/z3) 4.8.12 or later.
 
 # Supported features
 IAMCheck supports the most commonly used parts of the IAM policy specification, including negated statements (e.g. NotPrincipal, NotResource, etc), wildcards and conditions. Currently only the condition operators `StringEquals` and `StringNotEquals` and the condition variable `aws:username` is supported.
