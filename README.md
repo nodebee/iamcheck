@@ -8,7 +8,7 @@ IAMCheck allows you to verify properties of AWS IAM policies. It works by conver
 
 IAMCheck can prove implication between policies, i.e. that every request allowed by a policy is always allowed by a second policy. You can use this to define properties as a set of simple, easy-to-audit boundary policies and prove that the actual policy implies them.
 
-A typical use-case is to verify that a policy doesn't allow anonymous access (i.e. access from any account other that a trusted one). To verify this, we prove that our policy is more restrictive than a policy that allows all access from the trusted account, but none from anywhere else. Such a boundary policy might look like this:
+A typical use-case is to verify that a policy doesn't allow anonymous access (i.e. access from any account other than a trusted one). To verify this, we prove that our policy is more restrictive than a policy that allows all access from the trusted account, but none from anywhere else. Such a boundary policy might look like this:
 
 ```
 { 
