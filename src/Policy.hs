@@ -3,7 +3,7 @@ module Policy where
 
 import Data.Aeson
 import Data.Aeson.Types
-import Data.Text hiding (map, any, singleton, concat)
+import Data.Text hiding (map, any, singleton, concat, take, drop)
 import Control.Applicative ((<|>))
 import Control.Monad (foldM)
 import Control.Monad.Trans (lift)
@@ -210,11 +210,14 @@ objToKVList :: Monad m => Object -> m [(Text, Value)]
 objToKVList obj = return (HM.toList obj)
 
 parseARN :: Value -> Parser ParsedARN
-parseARN (String t) = doParse splitted
+parseARN (String t) = doParse elements
   where 
     doParse ["arn", _ARNPartition, _ARNService, _ARNRegion, _ARNAccountId, _ARNResourceId] = return $ ParsedARN {..}
     doParse _ = parseFail "invalid ARN"
     splitted = splitOn ":" t
+    arnElementsWithoutResourceId = take 5 splitted
+    arnResourceId = intercalate ":" $ drop 5 splitted
+    elements = arnElementsWithoutResourceId ++ [arnResourceId]
 parseARN _ = parseFail "unable to parse ARN"
 
 parsePrincipal :: Value -> Parser [Principal]
