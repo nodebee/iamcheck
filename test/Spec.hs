@@ -32,6 +32,7 @@ main = runTestTT $ TestList
   [
     testParsePolicy "putObject" testJSONPutObject,
     testParsePolicy "condition" testJSONCondition,
+    testParsePolicy "cloudwatch" testCloudWatch,
     expectPolicyImplies "allowPutObjectToAWSUser" allowPutObjectToAWSUser allowAllS3InAccount,
     expectPolicyDoesNotImply "allowPutObjectToAWSUserInAnotherAccount" allowPutObjectToAWSUserInAnotherAccount allowAllS3InAccount,
     expectPolicyDoesNotImply "allowChangePasswordToAWSUser" allowChangePasswordToAWSUser allowAllS3InAccount,

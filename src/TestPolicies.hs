@@ -51,6 +51,28 @@ testJSONPutObject = "{ \
 \  ] \
 \}"
 
+testCloudWatch :: ByteString
+testCloudWatch = "{ \ 
+\     \"Version\": \"2012-10-17\", \
+\     \"Statement\": [ \
+\         { \
+\             \"Sid\": \"foo\", \
+\             \"Principal\": { \"AWS\": \"arn:aws:iam::123456789012:role/testrole\" }, \
+\             \"Effect\": \"Allow\", \
+\             \"Action\": [ \
+\                 \"logs:PutLogEvents\", \
+\                 \"logs:CreateLogStream\", \
+\                 \"logs:CreateLogGroup\" \
+\             ], \
+\             \"Resource\": [ \
+\                 \"arn:aws:logs:eu-west-2:123456789012:log-group:/aws/lambda/test-lambda:*:*\", \
+\                 \"arn:aws:logs:eu-west-2:123456789012:log-group:/aws/lambda/test-lambda:*\" \
+\             ] \
+\         } \
+\   ] \
+\}"
+
+
 allowAllS3InAccount :: ByteString
 allowAllS3InAccount = "{ \
 \  \"Version\": \"2012-10-17\", \
