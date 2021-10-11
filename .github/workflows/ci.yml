@@ -33,7 +33,7 @@ jobs:
           name: iamcheck-exe
           path: package
       - name: Release
-        name: latest
         uses: softprops/action-gh-release@v1
         with:
+          name: latest
           files: package/iamcheck-exe
