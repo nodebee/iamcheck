@@ -1,6 +1,7 @@
 IAMCheck
 ========
 
+
 IAMCheck allows you to verify properties of AWS IAM policies. It works by converting IAM policies into an SMT encoding and using an SMT solver (e.g. Z3 or CVC4) to prove that the property holds or to generate a counterexample.
 
 # Usage
