@@ -1,6 +1,8 @@
 name: Build
 on:
   push:
+    paths-ignore:
+      - '**.md'
     branches:
       - master
 
@@ -14,6 +16,8 @@ jobs:
 
       - name: Cache dependencies 
         uses: actions/cache@v2
+        env:
+          cache-name: stack
         with:
           path: ~/.stack
           key: ${{ env.cache-name }}-${{ runner.os }}-store-${{ hashFiles('stack.yaml.lock') }}
