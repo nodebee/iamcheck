@@ -32,3 +32,8 @@ jobs:
         with:
           name: iamcheck-exe
           path: package
+      - name: Release
+        name: latest
+        uses: softprops/action-gh-release@v1
+        with:
+          files: package/iamcheck-exe
