@@ -24,7 +24,10 @@ testPolicyImplies expected policyName policy1 policy2 = TestCase $ isExpected @?
       actual <- isNothing <$> result
       return (actual == expected)
 
+expectPolicyImplies :: String -> ByteString -> ByteString -> Test
 expectPolicyImplies = testPolicyImplies True
+
+expectPolicyImplies :: String -> ByteString -> ByteString -> Test
 expectPolicyDoesNotImply = testPolicyImplies False
 
 main :: IO Counts
