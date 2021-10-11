@@ -35,6 +35,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: latest
+          name: latest-linux-x64
           tag_name: latest
-          files: package/iamcheck-exe
+          files: package/iamcheck
