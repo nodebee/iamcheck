@@ -1,0 +1,34 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies 
+        uses: actions/cache@v2
+        with:
+          path: ~/.stack
+          key: ${{ env.cache-name }}-${{ runner.os }}-store-${{ hashFiles('stack.yaml.lock') }}
+
+      - name: Build
+        run: stack build
+
+      - name: Package
+        shell: bash
+        run: |
+          mkdir package
+          dir=$(stack path --dist-dir)/build/iamcheck-exe
+          cp "$dir/iamcheck-exe" ../package/iamcheck
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: iamcheck-exe
+          path: package

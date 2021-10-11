@@ -1,0 +1,25 @@
+name: Tests
+on: pull-request
+
+jobs:
+  build:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: install z3
+        run: sudo apt-get install -y z3
+
+      - name: Cache dependencies 
+        uses: actions/cache@v2
+        env:
+          cache-name: stack
+        with:
+          path: ~/.stack
+          key: ${{ env.cache-name }}-${{ runner.os }}-store-${{ hashFiles('stack.yaml.lock') }}
+
+      - name: run tests
+        run: stack test
+
