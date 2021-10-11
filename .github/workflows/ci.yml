@@ -36,4 +36,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           name: latest
+          tag: latest
           files: package/iamcheck-exe
