@@ -3,7 +3,6 @@ IAMCheck
 
 IAMCheck allows you to verify properties of AWS IAM policies. It works by converting IAM policies into an SMT encoding and using an SMT solver (e.g. Z3 or CVC4) to prove that the property holds or to generate a counterexample.
 
-
 # Usage
 
 IAMCheck can prove implication between policies, i.e. that every request allowed by a policy is always allowed by a second policy. You can use this to define properties as a set of simple, easy-to-audit boundary policies and prove that the actual policy implies them.
