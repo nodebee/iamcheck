@@ -19,7 +19,7 @@ jobs:
           key: ${{ env.cache-name }}-${{ runner.os }}-store-${{ hashFiles('stack.yaml.lock') }}
 
       - name: Build
-        run: stack build
+        run: stack build --ghc-options="-Wall -Werror"
 
       - name: Package
         shell: bash

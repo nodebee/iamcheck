@@ -21,5 +21,6 @@ jobs:
           key: ${{ env.cache-name }}-${{ runner.os }}-store-${{ hashFiles('stack.yaml.lock') }}
 
       - name: run tests
-        run: stack test
+        run: stack test --ghc-options="-Wall -Werror"
+
 
