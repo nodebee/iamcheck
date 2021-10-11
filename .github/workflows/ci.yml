@@ -26,7 +26,7 @@ jobs:
         run: |
           mkdir package
           dir=$(stack path --dist-dir)/build/iamcheck-exe
-          cp "$dir/iamcheck-exe" ../package/iamcheck
+          cp "$dir/iamcheck-exe" package/iamcheck
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
