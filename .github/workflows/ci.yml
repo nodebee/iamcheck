@@ -25,6 +25,9 @@ jobs:
       - name: Build
         run: stack build --ghc-options="-Wall -Werror"
 
+      - name: run tests
+        run: stack test --ghc-options="-Wall -Werror"
+
       - name: Package
         shell: bash
         run: |
