@@ -9,9 +9,9 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: Get current tag
+        id: get_tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -43,4 +43,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: package/iamcheck
-          name: linux-x64-${{ steps.get_version.VERSION }}
+          name: linux-x64-${{ steps.get_tag.outputs.tag }}
