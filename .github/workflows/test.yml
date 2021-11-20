@@ -3,7 +3,11 @@ on:
   pull_request:
     paths-ignore:
       - '**.md'
-
+  push:
+   paths-ignore:
+     - '**.md'
+   branches:
+     - master
 
 jobs:
   build:
@@ -23,6 +27,9 @@ jobs:
         with:
           path: ~/.stack
           key: ${{ env.cache-name }}-${{ runner.os }}-store-${{ hashFiles('stack.yaml.lock') }}
+
+      - name: Build
+        run: stack build --ghc-options="-Wall -Werror"
 
       - name: run tests
         run: stack test --ghc-options="-Wall -Werror"
