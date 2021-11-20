@@ -14,6 +14,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
+      - name: install z3
+        run: sudo apt-get install -y z3
+
       - name: Cache dependencies 
         uses: actions/cache@v2
         env:
