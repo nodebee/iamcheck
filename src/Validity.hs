@@ -1,11 +1,11 @@
 {-# LANGUAGE TemplateHaskell, RecordWildCards #-}
 module Validity (isValid) where
 
-import Data.SBV
+import Data.SBV (SString, SBool, (.==), (.&&), sAny, literal)
 import RequestContext (SRequestContext, reqAction, reqServiceName)
 import Data.FileEmbed (embedFile)
 import Data.ByteString.Char8 (ByteString, split, lines, unpack)
-import Data.Map (Map, toList, insertWith, empty, fromListWith)
+import Data.Map (Map, toList, fromListWith)
 import Data.Coerce (coerce)
 
 allActionsFile :: ByteString
@@ -20,6 +20,7 @@ parsedActions actionsFile = coerce $ fromListWith (++) parsedLines
     lineParsed line = ((lineSplit line) !! 0, pure $ (lineSplit line) !! 1)
     parsedLines = map lineParsed (Data.ByteString.Char8.lines actionsFile)
 
+validActions :: AwsServiceActions
 validActions = parsedActions allActionsFile
 
 isValid :: SRequestContext -> SBool
