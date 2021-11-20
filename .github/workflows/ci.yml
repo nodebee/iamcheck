@@ -9,6 +9,10 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
       - name: Checkout repo
         uses: actions/checkout@v2
 
@@ -35,13 +39,8 @@ jobs:
           mkdir package
           dir=$(stack path --dist-dir)/build/iamcheck-exe
           cp "$dir/iamcheck-exe" package/iamcheck
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: iamcheck-exe
-          path: package
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: latest-linux-x64
           files: package/iamcheck
+          name: linux-x64-${{ steps.get_version.VERSION }}
