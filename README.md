@@ -71,7 +71,6 @@ IAMCheck also needs [Z3](https://github.com/Z3Prover/z3) 4.8.5 or later.
 # Limitations
 
 - **Note that IAMCheck is in an early stage of development and hasn't been extensively tested against the actual AWS policy engine. If you encounter any false positives or negatives, please raise an issue.** 
-- IAMCheck doesn't yet know about a lot of validity constraints in AWS, which can lead to false positives (e.g. `"Action": "Foo*"` shouldn't match anything since there is no such action in AWS, but IAMCheck will report it).
 - IAMCheck supports the most commonly used parts of the IAM policy specification, including negated statements (e.g. NotPrincipal, NotResource, etc), wildcards and conditions. Currently only the condition operators `StringEquals` and `StringNotEquals` and the condition variable `aws:username` is supported.
 
 # FAQ

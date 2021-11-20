@@ -7,6 +7,7 @@ import Data.SBV.RegExp
 import Data.Text (Text, unpack)
 import Data.List (unfoldr)
 import Data.Coerce (coerce)
+import Validity (isValid)
 
 import qualified Policy as P
 
@@ -104,7 +105,7 @@ resourcePatternToRegex = Conc . (fmap simbolify) . (separateBy ['*','?'])
 policyImplies :: P.Policy -> P.Policy -> IO ThmResult
 policyImplies p1 p2 = prove $ implication p1 p2
   where
-    implication a b reqContext = accessControlCheck a reqContext .=> accessControlCheck b reqContext
+    implication a b reqContext = ((accessControlCheck a reqContext .&& isValid reqContext) .=> accessControlCheck b reqContext )
 
 noPublicAccess :: P.AWSAccountId -> P.Policy -> IO ThmResult
 noPublicAccess accountId policy = policyImplies policy (P.allowAllFromAccount accountId)

@@ -151,3 +151,26 @@ allowPutObjectToAWSUserByCondition = "{ \
 \    } \
 \ ] \
 \}"
+
+allowNonExistingAction :: ByteString
+allowNonExistingAction = "{ \
+\  \"Version\": \"2012-10-17\", \
+\  \"Statement\": [ \
+\    { \
+\      \"Sid\": \"Stmt1617054271329\", \
+\      \"Principal\": {\"AWS\": \"arn:aws:iam::123456789012:user/test1\"}, \
+\      \"Action\": [ \
+\        \"iam:ThereisNoSuchAction\" \
+\      ], \
+\      \"Effect\": \"Allow\", \
+\      \"Resource\": \"*\" \
+\    } \
+\ ] \
+\}"
+
+empty :: ByteString
+empty = "{ \
+\  \"Version\": \"2012-10-17\", \
+\  \"Statement\": [ \
+\ ] \
+\}"

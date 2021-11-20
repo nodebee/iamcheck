@@ -34,6 +34,8 @@ dependencies:
 - dependent-sum-template
 - scientific
 - optparse-applicative
+- file-embed
+- containers
 
 library:
   source-dirs: src

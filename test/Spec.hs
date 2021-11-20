@@ -40,5 +40,7 @@ main = runTestTT $ TestList
     expectPolicyDoesNotImply "allowPutObjectToAWSUserInAnotherAccount" allowPutObjectToAWSUserInAnotherAccount allowAllS3InAccount,
     expectPolicyDoesNotImply "allowChangePasswordToAWSUser" allowChangePasswordToAWSUser allowAllS3InAccount,
     expectPolicyImplies "principal pattern and condition are equal #1" allowPutObjectToAWSUser allowPutObjectToAWSUserByCondition,
-    expectPolicyImplies "principal pattern and condition are equal #2" allowPutObjectToAWSUserByCondition allowPutObjectToAWSUser 
+    expectPolicyImplies "principal pattern and condition are equal #2" allowPutObjectToAWSUserByCondition allowPutObjectToAWSUser,
+    expectPolicyImplies "allowing nonexisting action equals to empty #1" allowNonExistingAction empty,
+    expectPolicyImplies "allowing nonexisting action equals to empty #2" empty allowNonExistingAction
   ] 
